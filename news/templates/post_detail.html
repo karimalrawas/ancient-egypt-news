@@ -1,0 +1,46 @@
+<!-- post_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ancient Egypt News - Post Detail</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Ancient Egypt News</h1>
+  </header>
+
+  <main>
+    <div class="post-detail">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.content }}</p>
+      <div class="post-info">
+        <span class="author">Posted by: {{ post.author }}</span>
+        <span class="upvotes">Upvotes: {{ post.upvotes }}</span>
+      </div>
+    </div>
+
+    <h3>Comments</h3>
+    <div class="comments">
+      <!-- Display the comments for the post -->
+      {% for comment in comments %}
+        <div class="comment">
+          <p>{{ comment.text }}</p>
+          <span class="author">Comment by: {{ comment.author }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Add a form to submit a new comment -->
+    <h3>Add a Comment</h3>
+    <form method="post" action="{% url 'add_comment' %}">
+      {% csrf_token %}
+      <input type="hidden" name="post_id" value="{{ post.id }}">
+      <textarea name="comment_text" rows="4" cols="50"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+</body>
+</html>

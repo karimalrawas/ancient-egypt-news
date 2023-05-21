@@ -1,0 +1,32 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ancient Egypt News</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Ancient Egypt News</h1>
+  </header>
+
+  <main>
+    <h2>Latest News</h2>
+    <div class="news-list">
+      <!-- Display the list of news posts -->
+      {% for post in posts %}
+        <div class="news-post">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.content }}</p>
+          <div class="post-info">
+            <span class="author">Posted by: {{ post.author }}</span>
+            <span class="upvotes">Upvotes: {{ post.upvotes }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </main>
+</body>
+</html>
