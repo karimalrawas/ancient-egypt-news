@@ -1,0 +1,31 @@
+<!-- signup.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ancient Egypt News - Sign Up</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Ancient Egypt News</h1>
+    <nav>
+      <a href="{% url 'signup' %}">Sign Up</a>
+      <a href="{% url 'login' %}">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Sign Up</h2>
+    <form method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </main>
+</body>
+</html>
