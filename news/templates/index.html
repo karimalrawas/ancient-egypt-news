@@ -1,36 +1,28 @@
 <!-- index.html -->
 
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Ancient Egypt News</title>
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-  <header>
-    <h1>Ancient Egypt News</h1>
-    <nav>
-      <a href="{% url 'signup' %}">Sign Up</a>
-      <a href="{% url 'login' %}">Login</a>
-    </nav>
-  </header>
+  <h1>Welcome to Ancient Egypt News</h1>
 
-  <main>
-    <h2>Latest News</h2>
-    <div class="news-list">
-      <!-- Display the list of news posts -->
-      {% for post in posts %}
-        <div class="news-post">
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.content }}</p>
-          <div class="post-info">
-            <span class="author">Posted by: {{ post.author }}</span>
-            <span class="upvotes">Upvotes: {{ post.upvotes }}</span>
-          </div>
-        </div>
-      {% endfor %}
+  {% for post in posts %}
+    <div class="post">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.content }}</p>
+      <p>Upvotes: {{ post.upvotes }}</p>
+      <a href="{% url 'post_detail' post.id %}">Read More</a>
     </div>
-  </main>
+  {% empty %}
+    <p>No posts available.</p>
+  {% endfor %}
+
+  <a href="{% url 'new_post' %}">Create New Post</a>
 </body>
 </html>
